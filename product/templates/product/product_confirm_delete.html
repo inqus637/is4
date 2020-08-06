@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <h2><a href="{% url 'product:product_list' %}"></a>Вы действительно хотите удалить запись ?</h2>
+      </li>
+    </ul>
+    <form  class="form-inline my-2 my-lg-0" method="post">{% csrf_token %}
+      <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+  </div>
+</nav>
+
+{% endblock %}

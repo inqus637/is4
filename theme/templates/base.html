@@ -1,0 +1,30 @@
+{% load static %}
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{% static 'find.js' %}"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
+    <title>Автор:Хариотонова Анастасия</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div id="header">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Логистика</a>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div><!-- header -->
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div><!-- content -->
+</body>
+</html>

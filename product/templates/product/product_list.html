@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% block javascript %}
+<script type="text/javascript">
+    var frm = $('#form-inline my-2 my-lg-0');
+    frm.submit(function () {
+        $.ajax({
+            type: frm.attr('GET'),
+            url: frm.attr('{% url 'product:product_new' %}'),
+            data: frm.serialize(),
+            success: function (data) {
+                $("#form-inline my-2 my-lg-0").html(data);
+            },
+            error: function(data) {
+                $("#form-inline my-2 my-lg-0").html("Something went wrong!");
+            }
+        });
+        return false;
+    });
+</script>
+{% endblock javascript %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <form  class="form-inline my-2 my-lg-0" method="get" action="{% url 'product:product_new' %}">
+          <button type="submit" class="btn btn-success">Новая поставка</button>
+        </form>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" id="search" placeholder="Поиск по таблице">
+    </form>
+  </div>
+</nav>
+<div style="margin: 1%;">
+<table border="2" class="table table-hover" id="mytable" cellspacing="0">
+    <thead>
+        <tr role="row" class="table-success">
+            <th>Локальный код</th>
+            <th>Товар</th>
+            <th>Поставщик</th>
+            <th>Учетная цена товара</th>
+            <th>МТЗ</th>
+            <th>Продажи за 14 дней</th>
+            <th>Продажи за 7 дней</th>
+            <th>Текущий остаток</th>
+            <th>Товар в пути</th>
+            <th>Рассчет</th>
+            <th>Коррекция</th>
+            <th>Удалить</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for product in object_list %}
+      <tr role="row">
+        <td>{{ product.product_id }} </td>
+        <td> {{ product.name }}</td>
+        <td> {{ product.trader_name }}</td>
+        <td> {{ product.price }}</td>
+        <td> {{ product.mtz }}</td>
+        <td> {{ product.sell14 }} </td>
+        <td> {{ product.sell7 }}</td>
+        <td> {{ product.ost }}</td>
+        <td> {{ product.road }} </td>
+        <td> {{ product.summ }} </td>
+        <td>
+          <form method="get" action="{% url 'product:product_edit' product.product_id %}">
+          <button type="submit" class="btn btn-warning"> Изменить</button>
+          </form>
+        <td>
+          <form method="get" action="{% url 'product:product_delete' product.product_id %}">
+          <button type="submit" class="btn btn-danger"> Удалить</button>
+          </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</div>
+<iframe src="{% url 'product:product_new' %}" align="center">
+    Ваш браузер не поддерживает плавающие фреймы!
+ </iframe>
+<script>
+
+     function rate()
+{
+
+ $.ajax({
+    context: document.body,
+    url: '{% url 'product:product_new' %}',
+    method: 'GET',
+    success: function(html){
+                        $("#navbarColor03").html(html);
+                    }
+});
+
+}
+rate();
+
+    </script>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <h2><a href="{% url 'product:product_list' %}"></a>Новая запись</h2>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<form  class="star" method="post">{% csrf_token %}
+  <table>
+    <tr>
+      <td align="right">
+        Товар: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.name }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Поставщик: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.trader_name }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Учетная цена товара: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.price }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        МТЗ: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.mtz}}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Продажи за 14 дней: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.sell14}}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Продажи за 7 дней: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.sell7 }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Текущий остаток: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.ost }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Товар в пути: &nbsp;&nbsp;
+      </td>
+      <td>
+        <div class="fieldWrapper">
+          {{ form.road }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+      </td>
+      <td align="left">
+        <button type="submit" class="btn btn-success">Добавить</button>
+      </td>
+    </tr>
+  <table>
+
+
+</form>
+
+{% endblock %}
